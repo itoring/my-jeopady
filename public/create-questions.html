@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クイズ作成: 問題入力</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="page">
+  <header class="toolbar">
+    <div class="container wide flex-between">
+      <div class="title" id="q-title"></div>
+      <div class="toolbar-actions">
+        <button id="save-all" class="btn primary">保存</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container wide">
+    <div id="top-errors" class="error-block" aria-live="polite"></div>
+    <div id="q-root"></div>
+  </main>
+
+  <script src="/utils.js"></script>
+  <script src="/questions.js"></script>
+</body>
+</html>

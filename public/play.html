@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クイズ実行</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="page">
+  <div class="layout">
+    <!-- 左固定スコア -->
+    <aside class="score-panel" aria-label="スコア">
+      <h2 class="score-title">スコア</h2>
+      <ul id="teams" class="team-list">
+        <!-- JSで 5チーム固定 -->
+      </ul>
+      <button id="reset" class="btn danger mt12">リセット</button>
+    </aside>
+
+    <!-- 右側：ボード/問題/答え -->
+    <main class="main-panel">
+      <!-- ボード -->
+      <section id="view-board" class="view">
+        <div id="board-title" class="h1 mb12"></div>
+        <div id="board" class="board" role="grid" aria-label="問題ボード"></div>
+      </section>
+
+      <!-- 問題 -->
+      <section id="view-question" class="view hidden">
+        <div class="center">
+          <div id="question-text" class="q-text"></div>
+          <button id="to-answer" class="btn primary big">次へ</button>
+        </div>
+      </section>
+
+      <!-- 答え -->
+      <section id="view-answer" class="view hidden">
+        <div class="center">
+          <div id="answer-text" class="a-text"></div>
+          <div class="judge">
+            <h3>判定（チームごとにトグル）</h3>
+            <div id="judge-rows" class="judge-rows"></div>
+          </div>
+          <button id="back-board" class="btn big">ボードへ戻る</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/utils.js"></script>
+  <script src="/play.js"></script>
+</body>
+</html>

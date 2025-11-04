@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>公開完了</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="page">
+  <main class="container narrow">
+    <h1 class="h1">クイズを公開しました</h1>
+    <p id="done-title" class="mb12"></p>
+    <div class="copybox">
+      <label class="label">URL（コピー可）</label>
+      <div class="copyrow">
+        <input id="play-url" class="input" readonly>
+        <button id="copy" class="btn">コピー</button>
+      </div>
+    </div>
+    <div class="actions">
+      <a id="btn-start" class="btn primary">クイズを始める</a>
+      <a class="btn" href="/create/settings">編集画面に戻る</a>
+      <a class="btn" href="/create/settings" id="btn-new">新しく作る</a>
+    </div>
+  </main>
+  <script src="/utils.js"></script>
+  <script src="/done.js"></script>
+</body>
+</html>

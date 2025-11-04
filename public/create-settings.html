@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クイズ作成: 設定</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="page">
+  <main class="container narrow">
+    <h1 class="h1">クイズ作成（設定）</h1>
+    <form id="settings-form" class="form">
+      <label class="label">タイトル（必須・100字まで）
+        <input id="title" class="input" maxlength="100" required>
+      </label>
+
+      <div class="row">
+        <div>
+          <label class="label">難易度最大（100刻み）
+            <select id="maxDifficulty" class="input">
+              <option value="200">200</option>
+              <option value="300">300</option>
+              <option value="400">400</option>
+              <option value="500">500</option>
+            </select>
+          </label>
+          <p class="muted">最低2段（例: 100, 200）。</p>
+        </div>
+      </div>
+
+      <div id="categories-wrap">
+        <label class="label">カテゴリ（2〜5／各8字まで）</label>
+        <div id="cat-list"></div>
+        <div class="row gap">
+          <button type="button" id="add-cat" class="btn">カテゴリ追加</button>
+          <button type="button" id="remove-cat" class="btn">削除</button>
+        </div>
+      </div>
+
+      <div id="err" class="error-block" aria-live="polite"></div>
+
+      <div class="actions">
+        <button type="submit" class="btn primary">次へ</button>
+      </div>
+    </form>
+  </main>
+  <script src="/utils.js"></script>
+  <script src="/create.js"></script>
+</body>
+</html>
