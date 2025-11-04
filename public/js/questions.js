@@ -1,4 +1,4 @@
-import { qs, qsa, el, sanitizeField, validateText100 } from '../utils.js';
+import { qs, qsa, el, sanitizeField, validateText100 } from './utils.js';
 
 const settings = JSON.parse(sessionStorage.getItem('createSettings') || 'null');
 if (!settings) {

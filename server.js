@@ -7,6 +7,46 @@ const morgan = require('morgan');
 const app = express();
 const db = new sqlite3.Database(path.join(__dirname, 'db.sqlite'));
 
+// スキーマを起動時に担保
+function ensureSchema() {
+  return new Promise((resolve, reject) => {
+    db.serialize(() => {
+      db.run('PRAGMA foreign_keys = ON');
+      db.run(`
+        CREATE TABLE IF NOT EXISTS quizzes (
+          quiz_id TEXT PRIMARY KEY UNIQUE,
+          title TEXT NOT NULL,
+          max_difficulty INTEGER NOT NULL,
+          created_at INTEGER,
+          updated_at INTEGER
+        )
+      `);
+      db.run(`
+        CREATE TABLE IF NOT EXISTS categories (
+          category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+          quiz_id TEXT NOT NULL,
+          name TEXT NOT NULL,
+          UNIQUE(quiz_id, name),
+          FOREIGN KEY (quiz_id) REFERENCES quizzes(quiz_id) ON DELETE CASCADE
+        )
+      `);
+      db.run(`
+        CREATE TABLE IF NOT EXISTS questions (
+          question_id INTEGER PRIMARY KEY AUTOINCREMENT,
+          quiz_id TEXT NOT NULL,
+          category_id INTEGER NOT NULL,
+          difficulty INTEGER NOT NULL,
+          text TEXT NOT NULL,
+          answer_text TEXT NOT NULL,
+          UNIQUE(quiz_id, category_id, difficulty),
+          FOREIGN KEY (quiz_id) REFERENCES quizzes(quiz_id) ON DELETE CASCADE,
+          FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE
+        )
+      `, (err) => err ? reject(err) : resolve());
+    });
+  });
+}
+
 app.use(morgan('tiny'));
 app.use(bodyParser.json({ limit: '1mb' }));
 
@@ -404,5 +444,9 @@ app.get('/create/questions', (req, res) => res.sendFile(path.join(__dirname, 'pu
 app.get('/create/done', (req, res) => res.sendFile(path.join(__dirname, 'public', 'create-done.html')));
 
 // サーバ起動
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running http://localhost:${PORT}`));
+ensureSchema().then(() => {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => console.log(`Server running http://localhost:${PORT}`));
+}).catch(err => {
+  console.error('Schema init failed:', err);
+});

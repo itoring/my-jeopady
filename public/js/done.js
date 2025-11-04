@@ -1,4 +1,4 @@
-import { qs, getParam, copyText } from '../utils.js';
+import { qs, getParam, copyText } from './utils.js';
 
 const quizId = getParam('quizId');
 const last = JSON.parse(sessionStorage.getItem('lastCreated') || 'null');
