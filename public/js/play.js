@@ -92,12 +92,15 @@ function buildBoard() {
   boardRoot.innerHTML = '';
   quiz.categories.forEach((cat, cIdx) => {
     const col = el('div', { class: 'cat-col' });
-    col.appendChild(el('div', { class: 'cat-name', text: cat }));
+    col.appendChild(el('div', {
+      class: 'cat-name cat' + (cIdx + 1),
+      text: cat
+    }));
 
     for (let d = 100, r = 0; d <= quiz.maxDifficulty; d += 100, r++) {
       const used = isUsed(cat, d);
       const btn = el('button', {
-        class: 'cell' + (used ? ' answered' : ''),
+        class: 'cell' + (used ? ' answered' : ' cat' + (cIdx + 1)),
         'data-col': String(cIdx),
         'data-row': String(r),
         'data-cat': cat,
