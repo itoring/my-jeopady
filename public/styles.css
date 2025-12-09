@@ -67,7 +67,7 @@ html, body {
     font-weight: 700;
     margin: 8px 0 6px;
 }
-.input, textarea,
+input, textarea,
 select {
     width: 100%;
     padding: 10px 12px;
@@ -79,7 +79,7 @@ select {
 textarea {
     resize: vertical;
 }
-.input[readonly] {
+input[readonly] {
     background: #fafafa;
 }
 
@@ -350,12 +350,12 @@ button.cat5:hover {
     text-align: center;
 }
 .q-text {
-    font-size: 28px;
+    font-size: 75px;
     font-weight: 900;
     max-width: 800px;
 }
 .a-text {
-    font-size: 28px;
+    font-size: 75px;
     font-weight: 900;
     max-width: 800px;
 }
@@ -381,7 +381,7 @@ button.cat5:hover {
     background: #eee;
 }
 .jbtn.active {
-    background: #000;
+    background: #ffd2c8;
     color: #fff;
 }
 .jlabel {

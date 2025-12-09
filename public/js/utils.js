@@ -14,7 +14,7 @@ export function hasForbidden(s) {
 }
 export function validateText100(s) {
   const t = sanitizeField(s);
-  if (!t) return '必須です。';
+  if (!t) return '入力してください。';
   if (t.length > 100) return '100文字以内で入力してください。';
   if (hasForbidden(t)) return '禁止文字（< >, http, https）が含まれています。';
   return null;
