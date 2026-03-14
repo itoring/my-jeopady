@@ -1,0 +1,22 @@
+Options -Indexes
+RewriteEngine On
+
+# --- API ルーティング（優先度の高い順に記述）---
+
+# POST /api/quizzes/:id/clone
+RewriteRule ^api/quizzes/([A-Za-z0-9]+)/clone/?$ api/quiz_clone.php?id=$1 [L,QSA]
+
+# GET/PUT/DELETE /api/quizzes/:id
+RewriteRule ^api/quizzes/([A-Za-z0-9]+)/?$ api/quiz.php?id=$1 [L,QSA]
+
+# POST /api/quizzes
+RewriteRule ^api/quizzes/?$ api/quizzes.php [L,QSA]
+
+# db_init.php は外部から直接アクセス禁止（実行後はファイルごと削除してください）
+RewriteRule ^db_config\.php$ - [F,L]
+
+# --- ページルーティング ---
+RewriteRule ^play/[A-Za-z0-9]+/?$ play.html [L]
+RewriteRule ^create/settings/?$ create-settings.html [L]
+RewriteRule ^create/questions/?$ create-questions.html [L]
+RewriteRule ^create/done/?$ create-done.html [L]
